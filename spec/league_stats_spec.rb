@@ -42,14 +42,13 @@ RSpec.describe LeagueStats do
   end
 
   it "#average_game_points" do
-    expect(@stat_tracker.team_averages_list).to be_a Hash
-    # eq {
-    #   "FC Dallas"=>2.67, 
-    #   "Houston Dynamo"=>1.6, 
-    #   "Sporting Kansas City"=>0.5, 
-    #   "LA Galaxy"=>1.0, 
-    #   "New England Revolution"=>2.0
-    # }
+    expect(@stat_tracker.team_averages_list).to eq ({
+      "FC Dallas"=>2.67, 
+      "Houston Dynamo"=>1.6, 
+      "Sporting Kansas City"=>0.5, 
+      "LA Galaxy"=>1.0, 
+      "New England Revolution"=>2.0
+    })
   end
 
   it "#best_offense" do
@@ -77,13 +76,11 @@ RSpec.describe LeagueStats do
   end
   
   it "#visitor_team_scores" do
-  expect(@stat_tracker.visitor_team_scores).to be_a Hash
-  # {"3"=>5, "6"=>12, "5"=>1, "17"=>1}
+  expect(@stat_tracker.visitor_team_scores).to eq({"3"=>5, "6"=>12, "5"=>1, "17"=>1})
   end
 
   it "visitor_averages" do
-    expect(@stat_tracker.visitor_averages).to be_a Hash
-    # {"3"=>1.67, "6"=>3.0, "5"=>0.5, "17"=>1.0}
+    expect(@stat_tracker.visitor_averages).to eq({"3"=>1.67, "6"=>3.0, "5"=>0.5, "17"=>1.0})
   end
 
   it "#highest_scoring_visitor" do
@@ -99,13 +96,11 @@ RSpec.describe LeagueStats do
 end
 
   it "#home_team_scores" do
-    expect(@stat_tracker.home_team_scores).to be_a Hash
-    #{"6"=>12, "3"=>3, "5"=>1, "16"=>2}
+    expect(@stat_tracker.home_team_scores).to eq({"6"=>12, "3"=>3, "5"=>1, "16"=>2})
   end
 
   it "home_averages" do
-    expect(@stat_tracker.home_averages).to be_a Hash
-    # {"6"=>2.4, "3"=>1.5, "5"=>0.5, "16"=>2.0}
+    expect(@stat_tracker.home_averages).to eq({"6"=>2.4, "3"=>1.5, "5"=>0.5, "16"=>2.0})
   end
 
   it "#highest_scoring_home_team" do
