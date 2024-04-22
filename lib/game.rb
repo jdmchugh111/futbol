@@ -8,7 +8,6 @@ class Game
                 :home_goals
                 
     def initialize(season_id, away_team_id, home_team_id, away_goals, home_goals)
-        # @game_id = game_id
         @season_id = season_id
         @away_team_id = away_team_id
         @home_team_id = home_team_id

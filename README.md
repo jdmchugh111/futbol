@@ -1,4 +1,4 @@
-# Futbol
+## Futbol
 
 # Scheduled Check-Ins
 Every weekday at 8:30am MT before class to discuss new code and merge all pending PRs.
@@ -20,3 +20,18 @@ Chee Lee - Github: cheeleertr
 James McHugh - Github: jdmchugh111
 Jan Lehigh - Github: JCL461437
 Lance Nelson - Github: LancePants97
+
+## Retro Recap
+Link to Github Projects Board:
+https://github.com/users/jdmchugh111/projects/2/views/1
+
+# Things That Went Well
+1. Consitent, clear, and prompt communication (both in Slack and Github)
+2. Good Git Workflow (a lot of line-specific commenting); also, met regularly to discuss prs, merge them and deal with all merge conflicts as a group
+3. Feedback was given in a constructive and actionable way, but still always respectful
+
+# Things We Would Do Differently
+1. Creating a more uniform commit style - making sure we're on the same page about when and how often to commit
+2. Create a naming system for new branches - branch names were easy enough to understand but could have been more methodical
+3. Knowing what we know now about the amount of coding required for Iteration 2, we likely would have split up the code into smaller assigned chunks when we started the process
+

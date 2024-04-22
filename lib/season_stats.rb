@@ -4,8 +4,7 @@ module SeasonStats
         get_all_games(season_id)
         load_coach_array
         load_coach_hash
-        coach_percentage_hash
-        @coach_percentages.sort_by {|k, v| -v}.first[0]
+        coach_percentage_hash.sort_by {|k, v| -v}.first[0]
     end
 
     def get_all_games(season_id)
@@ -19,21 +18,19 @@ module SeasonStats
     end
 
     def load_coach_array
-        @coach_array = []
+        coach_array = []
         @all_season_games.each do |game|
-            if !@coach_array.include?(game.head_coach)
-                @coach_array << game.head_coach
-            end
+            coach_array << game.head_coach
         end
-        @coach_array
+        coach_array.uniq
     end
 
     def load_coach_hash
-        @coach_hash = {}
-        @coach_array.each do |coach|
-            @coach_hash[coach] = coach_subhash(coach)
+        coach_hash = {}
+        load_coach_array.each do |coach|
+            coach_hash[coach] = coach_subhash(coach)
         end
-        @coach_hash
+        coach_hash
     end
 
     def coach_subhash(coach)
@@ -51,46 +48,42 @@ module SeasonStats
     end
 
     def coach_percentage_hash
-        @coach_percentages = {}
-        @coach_hash.each do |coach, subhash|
-            @coach_percentages[coach] = subhash[:wins].to_f / subhash[:total_games].to_f
+        coach_percentages = {}
+        load_coach_hash.each do |coach, subhash|
+            coach_percentages[coach] = subhash[:wins].to_f / subhash[:total_games].to_f
         end
-        @coach_percentages
+        coach_percentages
     end
 
     def worst_coach(season_id)
         get_all_games(season_id)
         load_coach_array
         load_coach_hash
-        coach_percentage_hash
-        @coach_percentages.sort_by {|k, v| v}.first[0]
+        coach_percentage_hash.sort_by {|k, v| v}.first[0]
     end
 
     def most_accurate_team(season_id)
         get_all_games(season_id)
         load_team_array
         load_team_hash
-        accuracy_hash
-        team_id = @accuracy_hash.sort_by {|k, v| -v}.first[0]
+        team_id = accuracy_hash.sort_by {|k, v| -v}.first[0]
         team_index(team_id)
     end
 
     def load_team_array
-        @team_array = []
+        team_array = []
         @all_season_games.each do |game|
-            if !@team_array.include?(game.team_id)
-                @team_array << game.team_id
-            end
+            team_array << game.team_id
         end
-        @team_array
+        team_array.uniq
     end
 
     def load_team_hash
-        @team_hash = {}
-        @team_array.each do |team|
-            @team_hash[team] = team_subhash(team)
+        team_hash = {}
+        load_team_array.each do |team|
+            team_hash[team] = team_subhash(team)
         end
-        @team_hash
+        team_hash
     end
 
     def team_subhash(team_id)
@@ -106,19 +99,18 @@ module SeasonStats
     end
 
     def accuracy_hash
-        @accuracy_hash = {}
-        @team_hash.each do |team, subhash|
-            @accuracy_hash[team] = subhash[:goals].to_f / subhash[:shots].to_f
+        accuracy_hash = {}
+        load_team_hash.each do |team, subhash|
+            accuracy_hash[team] = subhash[:goals].to_f / subhash[:shots].to_f
         end
-        @accuracy_hash
+        accuracy_hash
     end
 
     def least_accurate_team(season_id)
         get_all_games(season_id)
         load_team_array
         load_team_hash
-        accuracy_hash
-        team_id = @accuracy_hash.sort_by {|k, v| v}.first[0]
+        team_id = accuracy_hash.sort_by {|k, v| v}.first[0]
         team_index(team_id)
     end
 
@@ -132,17 +124,16 @@ module SeasonStats
     def most_tackles(season_id)
         get_all_games(season_id)
         load_team_array
-        load_tackle_hash
-        team_id = @tackle_hash.sort_by {|k, v| -v}.first[0]
+        team_id = load_tackle_hash.sort_by {|k, v| -v}.first[0]
         team_index(team_id)
     end
 
     def load_tackle_hash
-        @tackle_hash = {}
-        @team_array.each do |team|
-            @tackle_hash[team] = get_tackles(team)
+        tackle_hash = {}
+        load_team_array.each do |team|
+            tackle_hash[team] = get_tackles(team)
         end
-        @tackle_hash
+        tackle_hash
     end
 
     def get_tackles(team_id)
@@ -158,8 +149,7 @@ module SeasonStats
     def fewest_tackles(season_id)
         get_all_games(season_id)
         load_team_array
-        load_tackle_hash
-        team_id = @tackle_hash.sort_by {|k, v| v}.first[0]
+        team_id = load_tackle_hash.sort_by {|k, v| v}.first[0]
         team_index(team_id)
     end
 
